@@ -77,14 +77,15 @@ def draw_lattice_reduced(lattice, syndrome):
 
 
 #L = lattice size; p = error probability
- 
 L = int(raw_input('Enter lattice size L: '))
 p = float(raw_input('Enter error probability p: '))
+
 
 # The lattice can be seen as formed by two LxL separate lattices (each with LxL qubits): a vertical one, where the qubits are connected mainly vertically, and a horizontal one, where the qubits are connected mainly horizontally
 lattice_horizontal = [[{'X':random_error(p), 'Z':random_error(p)} for n in range(L)] for n in range(L)]
 lattice_vertical = [[{'X':random_error(p), 'Z':random_error(p)} for n in range(L)] for n in range(L)]
 lattice = {'H': lattice_horizontal, 'V': lattice_vertical}
+
 
 syndrome = syndrome(lattice)
 
