@@ -1,4 +1,4 @@
-# João Fernando Doriguello Diniz
+# Joao Fernando Doriguello Diniz
 # 07/02/2017
 # Implementation of the toric code with independent X and Z errors
 
