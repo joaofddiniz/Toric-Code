@@ -36,7 +36,7 @@ def draw_lattice(lattice, sindrome):
 	    print '   |', ' ' * 14,
         print '   |'
         for m in range(L):
-	    print 'X:{0} Z:{1}      {2}     '.format(lattice['V'][n][m]['X'], lattice['V'][n][m]['Z'], sindrome['Z'][n][m]),
+	    print 'X:{0},Z:{1}      {2}     '.format(lattice['V'][n][m]['X'], lattice['V'][n][m]['Z'], sindrome['Z'][n][m]),
         print 'X:{0},Z:{1}'.format(lattice['V'][n][0]['X'], lattice['V'][n][0]['Z'])
         for m in range (L):
 	    print '   |', ' ' * 14,
