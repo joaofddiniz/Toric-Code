@@ -31,8 +31,10 @@ def get_graph(L, syndrome_position):
 
     for A in ['X', 'Z']:
         n_syndrome = len(syndrome_position[A])
+	
         for n in range(n_syndrome):
             (x0, y0) = syndrome_position[A][n]
+	
             for m in range(n+1,n_syndrome):
 	        (x1, y1) = syndrome_position[A][m]
 	        weight = min((x0 - x1)%L, (x1 - x0)%L) + min((y0 - y1)%L, (y1 - y0)%L)
@@ -51,6 +53,7 @@ def get_pairs(syndrome_position, graph):
     for A in ['X', 'Z']:
         n_syndrome = len(syndrome_position[A])
         matching = pm.getMatching(n_syndrome, graph[A])
+	
         for n in range(n_syndrome/2):
             i, j = matching[2*n], matching[2*n+1]
             pairs[A] += [[syndrome_position[A][i], syndrome_position[A][j]]]
@@ -66,12 +69,14 @@ def correct_syndrome(L, lattice, syndrome_position, pairs):
     n_syndrome = len(syndrome_position['Z'])
     for n in range(n_syndrome/2):
         ((x0,y0), (x1,y1)) = pairs['Z'][n]
+	
         if (x1-x0)%L < (x0-x1)%L:
 	    for m in range((x1-x0)%L):
 	        lattice['V'][(x1-m-1)%L][y1]['Z'] ^= 1
         else:
 	    for m in range((x0-x1)%L):
 	        lattice['V'][(x1+m)%L][y1]['Z'] ^= 1
+		
         if (y1-y0)%L < (y0-y1)%L:
 	    for m in range((y1-y0)%L):
 	        lattice['H'][x0][(y1-m-1)%L]['Z'] ^= 1
@@ -83,12 +88,14 @@ def correct_syndrome(L, lattice, syndrome_position, pairs):
     n_syndrome = len(syndrome_position['X'])
     for n in range(n_syndrome/2):
         ((x0,y0), (x1,y1)) = pairs['X'][n]
+	
         if (x1-x0)%L < (x0-x1)%L:
 	    for m in range((x1-x0)%L):
 	        lattice['H'][(x1-m)%L][y1]['X'] ^= 1
         else:
 	    for m in range((x0-x1)%L):
 	        lattice['H'][(x1+m+1)%L][y1]['X'] ^= 1
+		
         if (y1-y0)%L < (y0-y1)%L:
 	    for m in range((y1-y0)%L):
 	        lattice['V'][x0][(y1-m)%L]['X'] ^= 1
