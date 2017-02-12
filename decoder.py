@@ -1,5 +1,5 @@
 # Joao Fernando Doriguello Diniz
-# 07/02/2017
+# 12/02/2017
 # Functions of the decoder
 
 import random
