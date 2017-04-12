@@ -4,8 +4,6 @@ from blossom5 import pyMatch as pm
 
 class toric_code_2D:
 
-    # 2D version of the toric code - Measurements are perfect
-
     def __init__(self, L=5, physical_error=0.1):
 
 	''' 
